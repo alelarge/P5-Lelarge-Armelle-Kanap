@@ -6,11 +6,11 @@ function getProducts() {
             }
         })
         .then(function (products) {
-            console.log(products);
+            // console.log(products);
             const sectionItems = document.getElementById("items");
 
             products.forEach(kanap => {
-                console.log('kanap', kanap);
+                //console.log('kanap', kanap);
                 const a = document.createElement('a');
                 const article = document.createElement('article');
                 const img = document.createElement('img');
@@ -31,13 +31,6 @@ function getProducts() {
                 article.appendChild(img);
                 article.appendChild(h3);
                 article.appendChild(p);
-
-
-
-
-
-
-
             });
         })
         .catch(function (err) {
@@ -47,7 +40,5 @@ function getProducts() {
 
 getProducts();
 
-let client = {
-    name: 'Armelle'
-}
+
 
