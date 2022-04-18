@@ -15,7 +15,7 @@ function getProductById(productId) {
             }
         })
         .then(function (product) {
-            console.log(product);
+            //console.log(product);
             currentProduct = product;
 
             // Insérer l'image du produit
@@ -42,7 +42,7 @@ function getProductById(productId) {
             // Insérer les options de couleur
 
             product.colors.forEach(function (color) {
-                console.log('toto', color);
+                //console.log('toto', color);
                 let option = document.createElement('option');
                 option.setAttribute('value', color);
                 colorSelect.appendChild(option);
@@ -57,25 +57,29 @@ function getProductById(productId) {
 
 getProductById(productId);
 
-
 // Créer une fonction nomée addToCart
 
 function addToCart() {
-    console.log('Ajout du panier');
+    //console.log('Ajout du panier');
     let productInfos = {
         id: currentProduct._id,
         color: colorSelect.value,
         quantity: quantityInput.value,
+        name: currentProduct.name,
+        // price: currentProduct.price,
+        description: currentProduct.description,
+        imageUrl: currentProduct.imageUrl,
+        altTxt: currentProduct.altTxt,
     }
 
     if (localStorage.cart) {
         let stringArray = localStorage.cart;
         let cart = JSON.parse(stringArray);
-        console.log('cart', cart);
+        //console.log('cart', cart);
         let isProductInCart = false;
 
         cart.forEach(product => {
-            console.log(product);
+            //console.log(product);
             if (productInfos.id === product.id && productInfos.color === product.color) {
                 isProductInCart = true;
                 product.quantity++;
@@ -86,18 +90,20 @@ function addToCart() {
             cart.push(productInfos);
         }
 
-        console.log('Ajout panier, fin', cart);
+        //console.log('Ajout panier, fin', cart);
 
         stringArray = JSON.stringify(cart);
         localStorage.setItem("cart", stringArray);
 
     } else {
-        console.log('pas de cart');
+        //console.log('pas de cart');
         let cart = [];
         cart.push(productInfos);
         let stringArray = JSON.stringify(cart);
         localStorage.setItem("cart", stringArray);
     };
+    document.location.href = "./cart.html";
+
 };
 
 // Mettre un console log dedans
